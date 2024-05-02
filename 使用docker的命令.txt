@@ -1,0 +1,52 @@
+首先需要先移除之前安装docker
+yum remove docker
+更新yum 源 yum update
+安装驱动依赖:yum install -y yum-utils device-mapper-persistent-data lvm2
+yum install docker
+检查docker 是否安装成功：
+docker -version
+systemctl start docker //启动docker
+systemctl enable docker //设置docker 开机自启动
+
+单独创建一个用户：
+groupadd usedocker
+useradd mydocker
+usermod -aG usedocker mydocker 
+
+docker的常用的命令：
+从镜像源中拉取镜像：
+docker pull （镜像名）
+将自己构建的镜像推送到镜像源中：
+docker push （镜像名）
+查看本地的镜像：
+docker images 
+删除本地的镜像：
+docker rmi
+创建并且运行容器：
+docker run  -d (后台运行的参数) --name （给容器名字的参数） nginx(容器名字)  -p (表明进行端口的映射)  80（系统的端口）：80（容器的端口） nginx （镜像名默认最新） 
+
+从网络中查找需要的镜像：
+docker search 镜像名称
+查看运行的容器的日志：
+docker logs
+进入容器的里面：
+docker exec  -it(表明以交互式的方式进入容器) 容器名   bash(交互使用的命令行S)
+停止正在运行的容器：
+docker stop
+启动容器：
+docker start
+查看正在运行的容器：
+docker ps 
+删除容器：
+docker rm
+保存镜像：
+docker save 
+使用案例 ： docker save -o  nginx.tar nginx: latest  将镜像保存在本地中
+将镜像包加载在本地中:
+docker load
+使用案例：
+docker load  -i nginx.tar
+
+
+
+

@@ -1,0 +1,13 @@
+创建数据卷：
+docker volume create
+查看所有的数据卷：
+docker volume ls
+删除指定的数据卷：
+docker volume rm
+查看指定数据卷详细情况：
+docker volume inspect
+清除数据卷：
+docker volume prunë
+创建容器并且挂载数据卷：
+docker run -d --name nginx -p 80:80 -v html(宿主机中的文件名):/usr/share/nginx/html（容器中要挂载的文件的路径） 
+nginx
