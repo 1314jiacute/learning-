@@ -1,0 +1,45 @@
+先建一个文件夹来放CMakeLists.txt的文件:
+touch cmake_flie
+创建CMakeLists.txt 文件:  
+touch CMakeLists.txt   （# 是行注释） （#[[]]是块注释）
+打开CMakeLists.txt文件:
+vim CMakeLists.txt
+
+在CMakeLists.txt 文件中:
+#先指定使用的cmake版本 
+cmake_minimum_required(version  3.15.0(版本号))
+#指定创建的项目名称:
+Project(testlja(项目名称))
+#指定编译之后生成的文件的名字
+add_executable(lja_app（编译之后生成的文件名字） main.cpp  Solution.h)
+
+以上步骤就可以写好一个基本的cmake文件
+#执行 CMakeLists.txt 文件
+cmake (要执行的CMakeLists.txt 文件)
+
+//优化需要用到的函数
+set(EX_FIie(定义的变量名) main.cpp (要被赋予给变量的文件名) Solution.h (要被赋予给变量的文件名) )
+#cmake 取变量值的特定格式  ${EX_Flie(变量名)}
+#设置C++使用的版本
+set(CMAKE_CXX_STANDARD 11)
+#指定生成的输出文件 文件的路径 最好是绝对路径
+set(HOME  /home/ljaend/stu_work/testlja1/outcmake) //先将路径进行封装
+set(EXECUTABLE_OUTPUT_PATH(指定生成文件的路径必要的宏） ${HOME})   #EXECUTABLE_OUTPUT_PATH (指定生成文件的路径必要的宏)
+#搜索指定路径里面的源文件 ， 并且将文件名封装到变量中
+aux_source_directory(/home/ljaend/stu_work/testlja1(指定的路径) SRC(变量))
+#PROJECT_SOURCE_DIR 该宏代表的是CMakeLists.txt文件所在的路径
+#搜索指定的路径下的指定的类型文件
+file(GOLB  SRC(用来存储搜索到的文件的文件名)  /home/ljaend/stu_work/testlja1(指定的路径)/*cpp （要搜索的文件名）)
+#向输出的执行文件导入头文件适用于头文件和执行文件分离的场景
+include_directories(/home/ljaend/stu_work/testlja1/)
+
+CMakeLists.txt 编译文件的模板：
+cmake_minimum_required(VERSION 3.15)
+set(CMAKE_CXX_STANDARD 11)
+project(test1lja)
+#aux_source_directory(/home/ljaend/stu_work/testlja1 SRC)
+set(SEARCH_FILE /home/ljaend/stu_work/testlja1 )
+file(GLOB SRC ${SEARCH_FILE}/*.cpp )
+set(HOME /home/ljaend/stu_work/testlja1/outcmake)
+set(EXECUTABLE_OUTPUT_PATH ${HOME})
+add_executable(lja_app ${SRC})
